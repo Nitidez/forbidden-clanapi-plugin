@@ -1,0 +1,6 @@
+name: FbClanAPI
+version: 1.0
+main: net.forbiddenseries.clanapi.Main
+author: Nitidez
+description: Forbidden Clan API.
+depend: [SimpleClans]
