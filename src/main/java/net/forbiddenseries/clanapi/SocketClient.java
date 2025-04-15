@@ -52,7 +52,7 @@ public class SocketClient extends WebSocketClient {
     public void onOpen(ServerHandshake handshakeData) {
         getLogger().info("[WebSocket] Conectado com sucesso.");
         JsonObject json = new JsonObject();
-        json.addProperty("message", "clanapi_connected");
+        json.addProperty("message", "clanapip_connected");
         send(json.toString());
         reconnectAttempts = 0;
     }
@@ -71,7 +71,9 @@ public class SocketClient extends WebSocketClient {
 
     @Override
     public void onClose(int code, String reason, boolean remote) {
-        getLogger().warning("[WebSocket] Conexão encerrada. Motivo: " + reason);
+        if (reconnectAttempts < 1) {
+            getLogger().warning("[WebSocket] Conexão encerrada. Motivo: " + reason);
+        }
         attemptReconnect();
     }
 

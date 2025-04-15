@@ -14,10 +14,16 @@ public class ClanSockets {
     private static final Gson gson = new Gson();
 
     public static void onMessage(String msg, JsonObject data) {
-        if (msg.equals("getclans")) {
-            String id = data.get("id").getAsString();
-            List<Clan> clans = manager.getClans();
-            send("getclans_"+id, gson.toJsonTree(clans).getAsJsonObject(), 200);
+        String id = data.get("id").getAsString();
+        switch (msg) {
+            case "getclans":
+                List<Clan> clans = manager.getClans();
+                send("getclans_"+id, gson.toJsonTree(clans).getAsJsonObject(), 200);
+                break;
+            case "heartbeat":
+                send("heartbeat_"+id, new JsonObject(), 200);                
+            default:
+                break;
         }
     }
 
