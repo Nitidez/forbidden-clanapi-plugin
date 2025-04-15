@@ -23,7 +23,7 @@ public class ClanSockets {
 
     public static void send(String msg, JsonObject data) {
         JsonObject json = new JsonObject();
-        json.addProperty("message", "clanapi_"+msg);
+        json.addProperty("message", "clanapip_"+msg);
         json.add("data", data);
         SocketClient.getSocketClient().send(json.toString());
     }

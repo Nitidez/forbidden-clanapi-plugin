@@ -63,8 +63,8 @@ public class SocketClient extends WebSocketClient {
         JsonObject json = (new JsonParser()).parse(message).getAsJsonObject();
         String jsonmsg = json.get("message").getAsString();
         JsonObject jsondata = json.get("data").getAsJsonObject();
-        if (jsonmsg.startsWith("clanapi_")) {
-            ClanSockets.onMessage(jsonmsg.replaceFirst("clanapi_", ""), jsondata);
+        if (jsonmsg.startsWith("clanapiw_")) {
+            ClanSockets.onMessage(jsonmsg.replaceFirst("clanapiw_", ""), jsondata);
         }
         } catch (Exception e) {}
     }
