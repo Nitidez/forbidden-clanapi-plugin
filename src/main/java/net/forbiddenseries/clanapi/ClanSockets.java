@@ -17,13 +17,14 @@ public class ClanSockets {
         if (msg.equals("getclans")) {
             String id = data.get("id").getAsString();
             List<Clan> clans = manager.getClans();
-            send("getclans_"+id, gson.toJsonTree(clans).getAsJsonObject());
+            send("getclans_"+id, gson.toJsonTree(clans).getAsJsonObject(), 200);
         }
     }
 
-    public static void send(String msg, JsonObject data) {
+    public static void send(String msg, JsonObject data, int code) {
         JsonObject json = new JsonObject();
         json.addProperty("message", "clanapip_"+msg);
+        json.addProperty("code", code);
         json.add("data", data);
         SocketClient.getSocketClient().send(json.toString());
     }
