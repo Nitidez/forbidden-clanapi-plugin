@@ -10,6 +10,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         INSTANCE = this;
+        saveDefaultConfig();
         FileConfiguration config = getConfig();
         try {
             SocketClient.setupSocketClient(config.getString("url"), config.getString("token"));
