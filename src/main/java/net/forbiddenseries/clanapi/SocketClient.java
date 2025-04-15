@@ -79,7 +79,9 @@ public class SocketClient extends WebSocketClient {
 
     @Override
     public void onError(Exception ex) {
-        getLogger().severe("[WebSocket] Erro: " + ex.getMessage());
+        if (reconnectAttempts < 1) {
+            getLogger().severe("[WebSocket] Erro: " + ex.getMessage());
+        }
     }
 
     private void attemptReconnect() {

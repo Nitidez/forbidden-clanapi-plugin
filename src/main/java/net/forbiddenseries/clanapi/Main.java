@@ -13,7 +13,7 @@ public class Main extends JavaPlugin {
         saveDefaultConfig();
         FileConfiguration config = getConfig();
         try {
-            SocketClient.setupSocketClient(config.getString("url"), config.getString("token"));
+            SocketClient.setupSocketClient("ws://" + config.getString("url"), config.getString("token"));
         } catch (URISyntaxException e) {
             getLogger().severe("[WebSocket] URL inválida!");
             System.exit(0);
